@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 db = sqlite3.connect('chem.db')  # connect to database (+creates if non existant)
 cur = db.cursor()  # creates cursor to execute SQL commands
 
-cur.execute("CREATE TABLE IF NOT EXISTS chem(name TEXT, cas TEXT UNIQUE, molarmass REAL, nmr_url TEXT, ms_url TEXT, bestprice_url TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS chem(chemid INTEGER PRIMARY KEY, name TEXT, cas TEXT UNIQUE, molarmass REAL, nmr_url TEXT, ms_url TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS prices(chempriceid INTEGER, cas_nr TEXT, gram REAL, price REAL, besprice_url TEXT, FOREIGN KEY(chempriceid) REFERENCES chem(chemid))")
 
 CHEMICALS = ['Natriumchlorid', 'Neutralrot']
 
@@ -27,10 +28,18 @@ for chem in CHEMICALS:
     time.sleep(3)
 
 
-res = cur.execute("SELECT name, cas FROM chem")
+res = cur.execute("SELECT * FROM chem")
+res2 = cur.execute("SELECT * FROM prices")
 print(f'{res.fetchall()}')
+print(f'{res2.fetchall()}')
+
+
+# NEXT: implement (molar mass), nmr_url, ms_url, bestprice_url, clean up output (maybe write to text file)
+
 
 # con.row_factory = sqlite3.Row   maybe nice, cause it's a superior row form
 # select sth:
 # cur.execute("SELECT name, cas FROM chem ORDER BY name")
 # for row in cur.execute(...): print(row) --> different than .fetchall
+
+# search on some site like: if compound found - get ...

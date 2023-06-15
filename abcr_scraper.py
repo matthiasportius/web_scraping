@@ -11,7 +11,7 @@ cur = db.cursor()  # creates cursor to execute SQL commands
 
 
 # url = f'https://abcr.com/de_de/catalogsearch/advanced/result/?cas={cas}'
-url = "https://abcr.com/de_de/catalogsearch/advanced/result/?cas=553-24-2"
+url = "https://abcr.com/de_de/catalogsearch/advanced/result/?cas=553-24-2"  # preliminary, change to requests from wiki_scraper.py with variable stuff (maybe with SELECT cas from wikis chem db)
 
 response = requests.get(url)
 
@@ -24,7 +24,7 @@ abcr_data_price = [price.text[1:] for price in abcr_data_price_r]
 abcr_data_gram = [gram.text.strip()[:-2] for gram in abcr_data_gram_r]
 
 for p, g in zip(abcr_data_price, abcr_data_gram):
-    cur.execute("INSERT OR IGNORE INTO prices VALUES(?, ?, ?, ?, ?)", ('1', "553-24-2", g, p, "https://abcr.com/de_de/catalogsearch/advanced/result/?cas=553-24-2"))
+    cur.execute("INSERT OR IGNORE INTO prices VALUES(?, ?, ?, ?)", ("553-24-2", g, p, "https://abcr.com/de_de/catalogsearch/advanced/result/?cas=553-24-2"))  # preliminary
 
 db.commit()
 

@@ -33,3 +33,8 @@ databases to store data:
     PostgreSQL: good for complex queries/operations (supports multiple concurrent writers), highly customizable, best for data analysis applications (read + write is fast)
     SQLite: good for small amount of data, lightweight
     --> use SQLite for a start, then switch to Postgres
+
+Selenium vs requests:
+As Selenium is a automated browser and Python Requests is a simple HTTP client, Selenium is the better option if you are scraping dynamic pages that require the page to be client side rendered before showing all the data. This is typical for websites that use modern web frameworks like AngularJS, ReactJS, VueJS, etc.
+requests for: scraping at large scale/fast, scraping API endpoints
+selenium for: rendering dynamic pages, when lot of interaction (click, scroll,...) with website is necessary, automated bots that work behind logins, screenshots of pages, heavily protected websites

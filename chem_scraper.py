@@ -9,7 +9,7 @@ cur = db.cursor()  # creates cursor to execute SQL commands
 cur.execute("CREATE TABLE IF NOT EXISTS chemicals(name TEXT, cas TEXT PRIMARY KEY, molarmass REAL, nmr_url TEXT, ms_url TEXT)")
 cur.execute("CREATE TABLE IF NOT EXISTS prices(cas_nr TEXT, gram REAL, price REAL, besprice_url TEXT, FOREIGN KEY(cas_nr) REFERENCES chem(cas))")
 
-CHEMICALS = ['Natriumchlorid', 'Neutralrot']
+CHEMICALS = ['Natriumchlorid', 'Neutralrot']  # change to wanted chemicals (argparse - run after entering first chemical, error if not existant)
 
 for chem in CHEMICALS:
     url = f'https://de.wikipedia.org/wiki/{chem}'
@@ -65,6 +65,7 @@ with open('results.txt', 'w') as f:
 
 
 
+# write into excel file instead of text
 # NEXT: implement (molar mass), nmr_url, ms_url, bestprice_url
 
 

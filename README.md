@@ -8,15 +8,6 @@ I also looked into databases and selenium while doing reasearch on web scraping.
 **requests**: package to open website and get back its data  
 **beautifulsoup**: package to sort collected data from website and get desired data
 
-## Any basic tips on web scraping you have?
-
-Make it so that you only scrape what you could get as a normal user.  
-Implement sleep / wait functions to not bombard the server.  
-Don't overgo captcha or other barriers which are there for a reason.  
-Don't just copy databases of a website (unspecific scraping of everything is not seen well)  
-Don't share databases you scraped (especially not for money!)  
-Ask for permission if you feel uncertain.
-
 ## Some notes on databases and how they are commonly used
 
 ### MySQL  
